@@ -1,0 +1,3 @@
+[submodule "build/apps/stub-app"]
+	path = build/apps/stub-app
+	url = git@github.com:slamplug/stub-app.git
