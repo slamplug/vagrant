@@ -1,8 +1,0 @@
-Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
-Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
-[refresh-snapshot-container] $ /bin/bash /tmp/hudson7121861559891449014.sh
-look up running containerid in /var/lib/jenkins/containers/stub-app.containerid
-cat: /var/lib/jenkins/containers/stub-app.containerid: No such file or directory
-starting docker container for app stub-app from URL http://192.168.56.10/nexus/stub-app-SNAPSHOT.tgz
-started container with id f7aa9a37a6193fd5686fb7b5c4316bc157ddcf3f0247d07559283fb8471af17a
-Finished: SUCCESS

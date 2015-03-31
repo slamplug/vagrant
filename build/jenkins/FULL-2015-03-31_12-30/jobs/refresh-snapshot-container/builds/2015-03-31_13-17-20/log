@@ -1,7 +1,0 @@
-Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
-Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
-[refresh-snapshot-container] $ /bin/bash /tmp/hudson6803796221651856165.sh
-starting docker container for app stub-app
-started container with id 0582fc8cfbf105228e5d4596cef75edf2d7beef66d8895c10800d191746da12a
-adding container id for app stub-app to container list
-Finished: SUCCESS

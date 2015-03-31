@@ -1,7 +1,0 @@
-Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
-Building in workspace /var/lib/jenkins/workspace/build-snapshot-stub-app-slug
-[build-snapshot-stub-app-slug] $ /bin/bash /tmp/hudson8179931144681407304.sh
-current directory is /var/lib/jenkins/workspace/build-snapshot-stub-app-slug
-fatal: Not a git repository (or any of the parent directories): .git
-Build step 'Execute shell' marked build as failure
-Finished: FAILURE

@@ -1,9 +1,0 @@
-Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
-Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
-[refresh-snapshot-container] $ /bin/bash /tmp/hudson6057019487416405648.sh
-look up running containerid in /var/lib/jenkins/containers/appsvr-app1.containerid
-starting docker container for app appsvr-app1 from URL http://192.168.56.10/nexus/appsvr-app1-SNAPSHOT.tgz
-started container with id 8cc1076ade376471ea03f4a428a186894fb18eea70f8cf8352aca47ea8ffa287
-check container is running and exit
-true
-Finished: SUCCESS
