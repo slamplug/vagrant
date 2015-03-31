@@ -9,7 +9,7 @@
   <forceQuietModeTimeout>120</forceQuietModeTimeout>
   <cleanupDiff>false</cleanupDiff>
   <moveOldBackupsToZipFile>false</moveOldBackupsToZipFile>
-  <backupBuildResults>true</backupBuildResults>
+  <backupBuildResults>false</backupBuildResults>
   <backupBuildArchive>false</backupBuildArchive>
   <backupUserContents>false</backupUserContents>
   <backupNextBuildNumber>false</backupNextBuildNumber>
