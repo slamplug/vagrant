@@ -11,14 +11,14 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.11.1">
-      <projectUrl>https://github.com/slamplug/stub-app.git/</projectUrl>
+      <projectUrl>https://github.com/slamplug/appsvr-app1.git/</projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.12">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>git@github.com:slamplug/stub-app.git</url>
+        <url>git@github.com:slamplug/appsvr-app1.git</url>
         <credentialsId>df940191-002f-435c-8264-78998abb1e16</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
@@ -42,7 +42,7 @@
       <command>#!/bin/bash
 cd ${WORKSPACE}
 echo &quot;current directory is `pwd`&quot;
-/usr/bin/git archive origin/master | sudo /usr/bin/docker run -i -a stdin -a stdout flynn/slugbuilder - &gt; /build/nexus/stub-app-SNAPSHOT.tgz</command>
+/usr/bin/git archive origin/master | sudo /usr/bin/docker run -i -a stdin -a stdout flynn/slugbuilder - &gt; /build/nexus/appsvr-app1-SNAPSHOT.tgz</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -51,8 +51,8 @@ echo &quot;current directory is `pwd`&quot;
         <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
           <configs>
             <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
-              <properties>appname=stub-app
-portnumber=9300</properties>
+              <properties>appname=appsvr-app1
+portnumber=9400</properties>
             </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
           </configs>
           <projects>refresh-snapshot-container</projects>

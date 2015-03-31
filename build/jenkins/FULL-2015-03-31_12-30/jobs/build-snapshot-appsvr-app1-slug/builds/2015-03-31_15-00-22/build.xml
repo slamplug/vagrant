@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causes>
+        <hudson.model.Cause_-UserIdCause/>
+      </causes>
+    </hudson.model.CauseAction>
+    <hudson.plugins.git.util.BuildData plugin="git@2.2.12">
+      <buildsByBranchName>
+        <entry>
+          <string>refs/remotes/origin/master</string>
+          <hudson.plugins.git.util.Build>
+            <marked plugin="git-client@1.16.1">
+              <sha1>612f81281aed5de2148010f15a30018de8c022f1</sha1>
+              <branches class="list">
+                <hudson.plugins.git.Branch>
+                  <sha1 reference="../../../sha1"/>
+                  <name>refs/remotes/origin/master</name>
+                </hudson.plugins.git.Branch>
+              </branches>
+            </marked>
+            <revision reference="../marked"/>
+            <hudsonBuildNumber>1</hudsonBuildNumber>
+          </hudson.plugins.git.util.Build>
+        </entry>
+      </buildsByBranchName>
+      <lastBuild reference="../buildsByBranchName/entry/hudson.plugins.git.util.Build"/>
+      <scmName></scmName>
+      <remoteUrls>
+        <string>git@github.com:slamplug/appsvr-app1.git</string>
+      </remoteUrls>
+    </hudson.plugins.git.util.BuildData>
+    <hudson.plugins.git.GitTagAction plugin="git@2.2.12">
+      <build class="build" reference="../../.."/>
+      <tags class="hudson.util.CopyOnWriteMap$Tree">
+        <entry>
+          <string>refs/remotes/origin/master</string>
+          <list/>
+        </entry>
+      </tags>
+      <ws>/var/lib/jenkins/workspace/build-snapshot-appsvr-app1-slug</ws>
+    </hudson.plugins.git.GitTagAction>
+    <hudson.scm.SCMRevisionState_-None/>
+    <hudson.plugins.parameterizedtrigger.CapturedEnvironmentAction plugin="parameterized-trigger@2.25">
+      <env serialization="custom">
+        <unserializable-parents/>
+        <tree-map>
+          <default>
+            <comparator class="hudson.util.CaseInsensitiveComparator"/>
+          </default>
+          <int>31</int>
+          <string>BUILD_ID</string>
+          <string>2015-03-31_15-00-22</string>
+          <string>BUILD_NUMBER</string>
+          <string>1</string>
+          <string>BUILD_TAG</string>
+          <string>jenkins-build-snapshot-appsvr-app1-slug-1</string>
+          <string>BUILD_URL</string>
+          <string>http://192.168.56.10/job/build-snapshot-appsvr-app1-slug/1/</string>
+          <string>CLASSPATH</string>
+          <string></string>
+          <string>EXECUTOR_NUMBER</string>
+          <string>1</string>
+          <string>GIT_BRANCH</string>
+          <string>origin/master</string>
+          <string>GIT_COMMIT</string>
+          <string>612f81281aed5de2148010f15a30018de8c022f1</string>
+          <string>GIT_URL</string>
+          <string>git@github.com:slamplug/appsvr-app1.git</string>
+          <string>HOME</string>
+          <string>/var/lib/jenkins</string>
+          <string>HUDSON_HOME</string>
+          <string>/var/lib/jenkins</string>
+          <string>HUDSON_SERVER_COOKIE</string>
+          <string>83c4583c2a899c19</string>
+          <string>HUDSON_URL</string>
+          <string>http://192.168.56.10/</string>
+          <string>JENKINS_HOME</string>
+          <string>/var/lib/jenkins</string>
+          <string>JENKINS_SERVER_COOKIE</string>
+          <string>83c4583c2a899c19</string>
+          <string>JENKINS_URL</string>
+          <string>http://192.168.56.10/</string>
+          <string>JOB_NAME</string>
+          <string>build-snapshot-appsvr-app1-slug</string>
+          <string>JOB_URL</string>
+          <string>http://192.168.56.10/job/build-snapshot-appsvr-app1-slug/</string>
+          <string>NLSPATH</string>
+          <string>/usr/dt/lib/nls/msg/%L/%N.cat</string>
+          <string>NODE_LABELS</string>
+          <string>master</string>
+          <string>NODE_NAME</string>
+          <string>master</string>
+          <string>PATH</string>
+          <string>/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin</string>
+          <string>PREVLEVEL</string>
+          <string>N</string>
+          <string>PWD</string>
+          <string>/</string>
+          <string>RUNLEVEL</string>
+          <string>2</string>
+          <string>TERM</string>
+          <string>linux</string>
+          <string>UPSTART_EVENTS</string>
+          <string>runlevel</string>
+          <string>UPSTART_INSTANCE</string>
+          <string></string>
+          <string>UPSTART_JOB</string>
+          <string>jenkins</string>
+          <string>WORKSPACE</string>
+          <string>/var/lib/jenkins/workspace/build-snapshot-appsvr-app1-slug</string>
+          <string>XFILESEARCHPATH</string>
+          <string>/usr/dt/app-defaults/%L/Dt</string>
+        </tree-map>
+      </env>
+    </hudson.plugins.parameterizedtrigger.CapturedEnvironmentAction>
+  </actions>
+  <number>1</number>
+  <startTime>1427810422841</startTime>
+  <result>ABORTED</result>
+  <duration>60551</duration>
+  <charset>US-ASCII</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/var/lib/jenkins/workspace/build-snapshot-appsvr-app1-slug</workspace>
+  <hudsonVersion>1.509.2</hudsonVersion>
+  <scm class="hudson.plugins.git.GitChangeLogParser" plugin="git@2.2.12">
+    <authorOrCommitter>false</authorOrCommitter>
+  </scm>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

@@ -1,0 +1,10 @@
+Started by upstream project "[8mha:AAAArx+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAz5EgZV/az8JP2k0sycFN3ivMSC4oz8Et3EgoLisiIQZahbnFOarg8ApFzb19oAAAA=[0mbuild-snapshot-appsvr-app1-slug" build number [8mha:AAAArx+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBjX9rPwk/aTSzJwU3eK8xILijPwS3cSCguKyIhBlqFucU5qubwQAZFX4ctsAAAA=[0m2
+originally caused by:
+ Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
+[refresh-snapshot-container] $ /bin/bash /tmp/hudson1554320684754716701.sh
+look up running containerid in /var/lib/jenkins/containers/appsvr-app1.containerid
+/tmp/hudson1554320684754716701.sh: line 16: unexpected EOF while looking for matching `"'
+/tmp/hudson1554320684754716701.sh: line 20: syntax error: unexpected end of file
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

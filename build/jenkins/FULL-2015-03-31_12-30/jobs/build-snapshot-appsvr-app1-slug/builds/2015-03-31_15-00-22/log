@@ -1,0 +1,25 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/build-snapshot-appsvr-app1-slug
+Cloning the remote Git repository
+Cloning repository git@github.com:slamplug/appsvr-app1.git
+ > /usr/bin/git init /var/lib/jenkins/workspace/build-snapshot-appsvr-app1-slug # timeout=10
+Fetching upstream changes from git@github.com:slamplug/appsvr-app1.git
+ > /usr/bin/git --version # timeout=10
+using GIT_SSH to set credentials 
+ > /usr/bin/git -c core.askpass=true fetch --tags --progress git@github.com:slamplug/appsvr-app1.git +refs/heads/*:refs/remotes/origin/*
+ > /usr/bin/git config remote.origin.url git@github.com:slamplug/appsvr-app1.git # timeout=10
+ > /usr/bin/git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > /usr/bin/git config remote.origin.url git@github.com:slamplug/appsvr-app1.git # timeout=10
+Fetching upstream changes from git@github.com:slamplug/appsvr-app1.git
+using GIT_SSH to set credentials 
+ > /usr/bin/git -c core.askpass=true fetch --tags --progress git@github.com:slamplug/appsvr-app1.git +refs/heads/*:refs/remotes/origin/*
+ > /usr/bin/git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > /usr/bin/git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 612f81281aed5de2148010f15a30018de8c022f1 (refs/remotes/origin/master)
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f 612f81281aed5de2148010f15a30018de8c022f1
+First time build. Skipping changelog.
+[build-snapshot-appsvr-app1-slug] $ /bin/bash /tmp/hudson7645548572145032260.sh
+current directory is /var/lib/jenkins/workspace/build-snapshot-appsvr-app1-slug
+Build was aborted
+Finished: ABORTED
