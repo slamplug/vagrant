@@ -1,0 +1,45 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/build-stub-app-slug
+Wiping out workspace first.
+Cloning the remote Git repository
+Cloning repository git@github.com:slamplug/stub-app.git
+ > /usr/bin/git init /var/lib/jenkins/workspace/build-stub-app-slug # timeout=10
+Fetching upstream changes from git@github.com:slamplug/stub-app.git
+ > /usr/bin/git --version # timeout=10
+using GIT_SSH to set credentials 
+ > /usr/bin/git -c core.askpass=true fetch --tags --progress git@github.com:slamplug/stub-app.git +refs/heads/*:refs/remotes/origin/*
+ > /usr/bin/git config remote.origin.url git@github.com:slamplug/stub-app.git # timeout=10
+ > /usr/bin/git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > /usr/bin/git config remote.origin.url git@github.com:slamplug/stub-app.git # timeout=10
+Fetching upstream changes from git@github.com:slamplug/stub-app.git
+using GIT_SSH to set credentials 
+ > /usr/bin/git -c core.askpass=true fetch --tags --progress git@github.com:slamplug/stub-app.git +refs/heads/*:refs/remotes/origin/*
+ > /usr/bin/git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > /usr/bin/git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision cdd1c32cc77d6ab4dc6cc694adbc606735297176 (refs/remotes/origin/master)
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f cdd1c32cc77d6ab4dc6cc694adbc606735297176
+ > /usr/bin/git rev-list 0e62e82814bebaf7eeb9968230f164f2e2a744c6 # timeout=10
+FATAL: hudson/tasks/Mailer$UserProperty
+[8mha:AAAAWB+LCAAAAAAAAABb85aBtbiIQSmjNKU4P08vOT+vOD8nVc8DzHWtSE4tKMnMz/PLL0ldFVf2c+b/lb5MDAwVRQxSaBqcITRIIQMEMIIUFgAAckCEiWAAAAA=[0mjava.lang.NoClassDefFoundError: hudson/tasks/Mailer$UserProperty
+	at hudson.plugins.git.GitChangeLogParser.parseCommit(GitChangeLogParser.java:77)
+	at hudson.plugins.git.GitChangeLogParser.parse(GitChangeLogParser.java:71)
+	at hudson.plugins.git.GitChangeLogParser.parse(GitChangeLogParser.java:48)
+	at hudson.plugins.git.GitChangeLogParser.parse(GitChangeLogParser.java:29)
+	at hudson.model.AbstractBuild.calcChangeSet(AbstractBuild.java:920)
+	at hudson.model.AbstractBuild.access$600(AbstractBuild.java:103)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.defaultCheckout(AbstractBuild.java:679)
+	at jenkins.scm.SCMCheckoutStrategy.checkout(SCMCheckoutStrategy.java:88)
+	at hudson.model.AbstractBuild$AbstractBuildExecution.run(AbstractBuild.java:579)
+	at hudson.model.Run.execute(Run.java:1575)
+	at hudson.model.FreeStyleBuild.run(FreeStyleBuild.java:46)
+	at hudson.model.ResourceController.execute(ResourceController.java:88)
+	at hudson.model.Executor.run(Executor.java:237)
+Caused by: java.lang.ClassNotFoundException: hudson.tasks.Mailer$UserProperty
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:366)
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:425)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
+	... 13 more

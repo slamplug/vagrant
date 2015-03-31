@@ -1,0 +1,19 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/build-stub-app-slug
+ > /usr/bin/git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > /usr/bin/git config remote.origin.url git@github.com:slamplug/stub-app.git # timeout=10
+Fetching upstream changes from git@github.com:slamplug/stub-app.git
+ > /usr/bin/git --version # timeout=10
+using GIT_SSH to set credentials 
+ > /usr/bin/git -c core.askpass=true fetch --tags --progress git@github.com:slamplug/stub-app.git +refs/heads/*:refs/remotes/origin/*
+ > /usr/bin/git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > /usr/bin/git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision f93ea33e57a6533cc2fef15852b5e88ee31e6a24 (refs/remotes/origin/master)
+ > /usr/bin/git config core.sparsecheckout # timeout=10
+ > /usr/bin/git checkout -f f93ea33e57a6533cc2fef15852b5e88ee31e6a24
+ > /usr/bin/git rev-list f93ea33e57a6533cc2fef15852b5e88ee31e6a24 # timeout=10
+[build-stub-app-slug] $ /bin/bash /tmp/hudson3720264868491448637.sh
+current directory is /var/lib/jenkins/workspace/build-stub-app-slug
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

@@ -1,0 +1,10 @@
+commit cdd1c32cc77d6ab4dc6cc694adbc606735297176
+tree 315adce522f01dc2373fc29dbe997e362646c55d
+parent 0e62e82814bebaf7eeb9968230f164f2e2a744c6
+author slamplug <simon.lamplugh@capgemini.com> 1427800798 +0100
+committer slamplug <simon.lamplugh@capgemini.com> 1427800798 +0100
+
+    maven
+
+:100644 100644 519305a7eec6b788dc9f3db1419fdf1978f2ecd3 1a4892bf25f033446413ed82d8278d53f753a672 M	Procfile
+:100644 100644 f59ffea2c72c920e24f86db38a90ecba46231c3f ab5a5da9584eb52d16773eb2c4a3c065ab82e6df M	src/main/resources/application.properties
