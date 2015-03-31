@@ -1,0 +1,7 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
+[refresh-snapshot-container] $ /bin/bash /tmp/hudson4321258543073730836.sh
+starting docker container for app stub-app from URL http://192.168.56.10/nexus/stub-app-SNAPSHOT.tgz
+time="2015-03-31T13:38:25+01:00" level="fatal" msg="Error response from daemon: Cannot start container beb72900840727d377e8660efb41a18d556faeef429f8143b2afa23eca4ab755: Bind for 0.0.0.0:9300 failed: port is already allocated" 
+started container with id beb72900840727d377e8660efb41a18d556faeef429f8143b2afa23eca4ab755
+Finished: SUCCESS

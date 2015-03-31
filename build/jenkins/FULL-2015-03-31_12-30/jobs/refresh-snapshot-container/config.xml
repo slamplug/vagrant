@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>appname</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/bash
+echo &quot;look up running containerid in /var/lib/jenkins/containers/${appname}.containerid&quot;
+old_id=$(cat /var/lib/jenkins/containers/${appname}.containerid 2&gt;/dev/null)
+if [ &quot;x${old_id}&quot; != &quot;x&quot; ]; then
+  running=$(sudo /usr/bin/docker inspect --format=&quot;{{ .State.Running }}&quot; ${old_id})
+  if [ &quot;${running}&quot; == &quot;true ]; then
+    echo &quot;stopping and removing old container with id ${old_id}&quot;
+    sudo /usr/bin/docker stop ${old_id} &amp;&amp; sudo /usr/bin/docker rm ${old_id}
+  fi
+fi
+echo &quot;starting docker container for app ${appname} from URL http://192.168.56.10/nexus/${appname}-SNAPSHOT.tgz&quot;
+id=$(sudo /usr/bin/docker run -p 9300:8080 -e SLUG_URL=http://192.168.56.10/nexus/${appname}-SNAPSHOT.tgz -d -i -t flynn/slugrunner start web)
+echo &quot;started container with id ${id}&quot;
+echo &quot;${id}&quot; &gt; /var/lib/jenkins/containers/${appname}.containerid
+echo &quot;check container is running and exit&quot;
+sudo /usr/bin/docker inspect --format=&quot;{{ .State.Running }}&quot; ${id}
+
+
+
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

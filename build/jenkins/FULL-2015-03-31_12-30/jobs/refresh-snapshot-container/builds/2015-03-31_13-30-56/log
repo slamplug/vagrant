@@ -1,0 +1,12 @@
+Started by upstream project "[8mha:AAAArh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyZEgYl/az8JP2k0sycFN3ivMSC4oz8Et3iktIk3cSCAt3inNJ0fQAx4JSV1wAAAA==[0mbuild-snapshot-stub-app-slug" build number [8mha:AAAAsB+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAymEgYV/az8JP2k0sycFN3ivMSC4oz8Et3iktIk3cSCAt3inNJ0fWNTAGNeeerZAAAA[0m35
+originally caused by:
+ Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
+[refresh-snapshot-container] $ /bin/bash /tmp/hudson6987241494624755109.sh
+stopping and removing old container
+Error response from daemon: No such container: 0582fc8cfbf105228e5d4596cef75edf2d7beef66d8895c10800d191746da12a
+time="2015-03-31T13:30:56+01:00" level="fatal" msg="Error: failed to stop one or more containers" 
+starting docker container for app stub-app from URL http://192.168.56.10/nexus/stub-app-SNAPSHOT.tgz
+started container with id 00b15f8fe1e48bedb930616a716001ccc8b117433f07ffd33da005674605e99c
+replacing container ids 0582fc8cfbf105228e5d4596cef75edf2d7beef66d8895c10800d191746da12a > 00b15f8fe1e48bedb930616a716001ccc8b117433f07ffd33da005674605e99c for app stub-app in container list
+Finished: SUCCESS

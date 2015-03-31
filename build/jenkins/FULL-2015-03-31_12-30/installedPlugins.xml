@@ -10,6 +10,10 @@
       <string>1.11</string>
     </entry>
     <entry>
+      <string>build-with-parameters</string>
+      <string>1.3</string>
+    </entry>
+    <entry>
       <string>Hudson core</string>
       <string>1.509.2</string>
     </entry>
@@ -22,12 +26,20 @@
       <string>0.2</string>
     </entry>
     <entry>
+      <string>show-build-parameters</string>
+      <string>1.0</string>
+    </entry>
+    <entry>
       <string>git</string>
       <string>2.2.12</string>
     </entry>
     <entry>
       <string>credentials</string>
       <string>1.22</string>
+    </entry>
+    <entry>
+      <string>parameterized-trigger</string>
+      <string>2.25</string>
     </entry>
     <entry>
       <string>github</string>

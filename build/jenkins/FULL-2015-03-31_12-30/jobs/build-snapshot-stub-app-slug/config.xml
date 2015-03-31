@@ -29,9 +29,7 @@
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
     <submoduleCfg class="list"/>
-    <extensions>
-      <hudson.plugins.git.extensions.impl.WipeWorkspace/>
-    </extensions>
+    <extensions/>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -41,9 +39,27 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>/usr/bin/git archive origin/master | sudo /usr/bin/docker run -i -a stdin -a stdout flynn/slugbuilder - &gt; /build/nexus/stub-app-SNAPSHOT.tgz</command>
+      <command>#!/bin/bash
+cd ${WORKSPACE}
+echo &quot;current directory is `pwd`&quot;
+/usr/bin/git archive origin/master | sudo /usr/bin/docker run -i -a stdin -a stdout flynn/slugbuilder - &gt; /build/nexus/stub-app-SNAPSHOT.tgz</command>
     </hudson.tasks.Shell>
   </builders>
-  <publishers/>
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>appname=stub-app</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>refresh-snapshot-container</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
   <buildWrappers/>
 </project>

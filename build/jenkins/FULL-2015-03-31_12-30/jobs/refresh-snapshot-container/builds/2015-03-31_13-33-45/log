@@ -1,0 +1,10 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
+[refresh-snapshot-container] $ /bin/bash /tmp/hudson6168986231403154768.sh
+stopping and removing old container
+00b15f8fe1e48bedb930616a716001ccc8b117433f07ffd33da005674605e99
+00b15f8fe1e48bedb930616a716001ccc8b117433f07ffd33da005674605e99
+starting docker container for app stub-app from URL http://192.168.56.10/nexus/stub-app-SNAPSHOT.tgz
+started container with id bdabb4ea079c84c5f2fb5b1337bb201820e8a0c993adacf0b324ddf27601bc7a
+replacing container ids [00b15f8fe1e48bedb930616a716001ccc8b117433f07ffd33da005674605e99] > [bdabb4ea079c84c5f2fb5b1337bb201820e8a0c993adacf0b324ddf27601bc7a] for app stub-app in container list
+Finished: SUCCESS

@@ -1,0 +1,12 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAABb85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /var/lib/jenkins/workspace/refresh-snapshot-container
+[refresh-snapshot-container] $ /bin/bash /tmp/hudson3606576854366924215.sh
+look up running containerid in /var/lib/jenkins/containers/stub-app.containerid
+stopping and removing old container with id 694acd7b9e3bed5ddae643a184449970b003bb7b8ac4826681997c0ba1b7d31b
+694acd7b9e3bed5ddae643a184449970b003bb7b8ac4826681997c0ba1b7d31b
+694acd7b9e3bed5ddae643a184449970b003bb7b8ac4826681997c0ba1b7d31b
+starting docker container for app stub-app from URL http://192.168.56.10/nexus/stub-app-SNAPSHOT.tgz
+started container with id 59b04bbd11cb8a8cf0460dc8bbc6ec4ef4e36c072dc7219b10a80e378963fab8
+check container is running and exit
+true
+Finished: SUCCESS
