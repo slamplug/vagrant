@@ -2,35 +2,52 @@
 
 # Instructions
 
-# General
+## General
 
 1. Install vagrant on the host.
 2. gt clone --recursive https://github.com/slamplug/vagrant.git
 
-# Build Server
+## Build Server
 
 1. cd into vagrant directory
 2. vagrant up build
-3. Once started the following needs to be added to the sudoers file
 
-   jenkins    ALL=NOPASSWD: /usr/bin/docker
-   
-4. Set up jenkins jobs. Jenkins is accessed on http://192.168.56.10/. 
-   Jenkins config has been backed up at vagrant/build/jenkins.
-   Will need SSH keys for GitHub.
-   Reqire the following additional plugins.
-     - Jenkins GIT client Plugin
-	 - GitHub API Plugin
-	 - Jenkins GIT Plugin
-	 - Github Plugin
-	 - Build with Parameters Plugin
-	 - Jenkins Parametrized Trigger Plugin
-	 - Show Buold Parameters Plugin
-	 - ThinBackup
-	 - SSH Plugin
-	 - SSH Slaves Plugin
+hostname: build
+ip: 192.168.56.10 
 
-Jenkins jobs build slugs and secure these in local NGINX serverd directory. These could go in Nexus instead.
-Jenkins container refresh job removes any existing container, then starts new docker container.
-  
+### 5 types of build jobs
 
+- Snapshot builds. Produce -SNAPSHOT.tgz files.
+-- Files are located in /build/nexus
+-- Files served by NGINX
+-- TODO: Upload/retrieve files from Nexus (nice to have)
+-- triggers snapshot deploy
+
+- Snapshot deploy. Produce -SNAPSHOT.tgz files.
+-- Retrieve files using http:// protocol
+-- Job executes on Jenkins slave on dev host
+-- Remove existing container
+-- Starts new container
+
+- Release
+-- runs mvn release:prepare to tag in GIT
+-- triggers release build
+
+- Release builds. Produce tagged tgz files. (
+-- Files are located in /build/nexus
+-- Files served by NGINX
+-- TODO: Upload/retrieve files from Nexus (nice to have)
+
+- Release deploy. Produce -SNAPSHOT.tgx files.
+-- Retrieve files using http:// protocol
+-- Job executes on Jenkins slave on test host
+-- Remove existing container
+-- Starts new container
+
+## Dev Server
+
+1. cd into vagrant directory
+2. vagrant up dev
+
+hostname: dev
+ip: 192.168.56.20
