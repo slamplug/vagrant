@@ -4,6 +4,8 @@ echo "installing jenkins"
 dpkg -s jenkins 2>/dev/null >/dev/null || apt-get -y install jenkins
 service jenkins stop
 unzip -o /vagrant/build/jenkins/home.zip -d /var/lib/jenkins
+find /var/lib/jenkins/jobs -name lastSuccessful -exec rm -rf 2>/dev/null {} \;
+find /var/lib/jenkins/jobs -name lastStable -exec rm -rf 2>/dev/null {} \;
 chown -R jenkins:jenkins /var/lib/jenkins
 service jenkins start
 
