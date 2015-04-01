@@ -2,6 +2,10 @@
 
 echo "installing jenkins"
 dpkg -s jenkins 2>/dev/null >/dev/null || apt-get -y install jenkins
+service jenkins stop
+unzip -o /vagrant/build/jenkins/home.zip -d /var/lib/jenkins
+chown -R jenkins:jenkins /var/lib/jenkins
+service jenkins start
 
 echo "configure nginx"
 cd /etc/nginx/sites-available && rm default 2>/dev/null && rm ../sites-enabled/default 2>/dev/null
@@ -21,3 +25,6 @@ dpkg -s lxc-docker 2>/dev/null >/dev/null || apt-get -y install lxc-docker
 
 echo "install flynn stuff"
 docker pull flynn/slugbuilder
+
+echo "add jenkins to sudoers file"
+echo "jenkins    ALL=NOPASSWD: /usr/bin/docker" >> /etc/sudoers

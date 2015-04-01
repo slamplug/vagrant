@@ -10,7 +10,7 @@
 # Build Server
 
 1. cd into vagrant directory
-2. vagrant build up
+2. vagrant up build
 3. Once started the following needs to be added to the sudoers file
 
    jenkins    ALL=NOPASSWD: /usr/bin/docker
@@ -27,6 +27,8 @@
 	 - Jenkins Parametrized Trigger Plugin
 	 - Show Buold Parameters Plugin
 	 - ThinBackup
+	 - SSH Plugin
+	 - SSH Slaves Plugin
 
 Jenkins jobs build slugs and secure these in local NGINX serverd directory. These could go in Nexus instead.
 Jenkins container refresh job removes any existing container, then starts new docker container.
