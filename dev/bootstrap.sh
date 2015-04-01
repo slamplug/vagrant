@@ -2,9 +2,9 @@
 
 echo "configure nginx"
 cd /etc/nginx/sites-available && rm default 2>/dev/null && rm ../sites-enabled/default 2>/dev/null
-dos2unix /vagrant/build/nginx/nginx.conf
+dos2unix /vagrant/dev/nginx/nginx.conf
 cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.`date +%Y%m%d-%H%M%S`
-cp /vagrant/build/nginx/nginx.conf /etc/nginx/nginx.conf
+cp /vagrant/dev/nginx/nginx.conf /etc/nginx/nginx.conf
 service nginx restart
 
 echo "install ruby"

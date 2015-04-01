@@ -9,6 +9,9 @@ find /var/lib/jenkins/jobs -name lastStable -exec rm -rf 2>/dev/null {} \;
 chown -R jenkins:jenkins /var/lib/jenkins
 service jenkins start
 
+echo "install maven"
+dpkg -s maven 2>/dev/null >/dev/null || apt-get -y install maven
+
 echo "configure nginx"
 cd /etc/nginx/sites-available && rm default 2>/dev/null && rm ../sites-enabled/default 2>/dev/null
 dos2unix /vagrant/build/nginx/nginx.conf
@@ -30,3 +33,8 @@ docker pull flynn/slugbuilder
 
 echo "add jenkins to sudoers file"
 echo "jenkins    ALL=NOPASSWD: /usr/bin/docker" >> /etc/sudoers
+
+echo "setting jenkins git identity"
+su - jenkins -c 'git config --global user.email "jenkins@example.com"'
+su - jenkins -c 'git config --global user.name "jenkins"'
+
