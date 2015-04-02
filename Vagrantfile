@@ -56,4 +56,20 @@ Vagrant.configure('2') do |config|
     #end
   end
 
+  config.vm.define :elk do |elk_config|
+
+    elk_config.vm.box = BOX
+    elk_config.vm.host_name = "elk"
+    elk_config.vm.network "private_network", ip: "192.168.56.40"
+
+    elk_config.vm.provision :shell, :inline => "apt-get -y install dos2unix"
+    elk_config.vm.provision :shell, :inline => "cp -r /vagrant/.ssh/* /home/vagrant/.ssh/."
+    elk_config.vm.provision :shell, :inline => "chmod 600 /home/vagrant/.ssh/id_rsa"
+    elk_config.vm.provision :shell, :inline => "cd /vagrant/elk; dos2unix bootstrap.sh; echo vagrant | sudo -S ./bootstrap.sh"
+ 
+    #config.vm.provider :virtualbox do |vb|
+    #    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    #    vb.customize ["modifyvm", :id, "--cpus", "2"]
+    #end
+  end
 end
