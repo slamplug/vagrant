@@ -22,14 +22,9 @@ echo "<html><body>This is where NGINX will serve static content from.</body></ht
 chmod -R 777 /build/nexus
 service nginx restart
 
-echo "install docker"
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D8576A8BA88D21E9
-echo "deb http://get.docker.io/ubuntu docker main" > /etc/apt/sources.list.d/docker.list
-apt-get update
-dpkg -s lxc-docker 2>/dev/null >/dev/null || apt-get -y install lxc-docker
-
 echo "install flynn stuff"
 docker pull flynn/slugbuilder
+docker pull slamplug/slugrunner
 
 echo "add jenkins to sudoers file"
 echo "jenkins    ALL=NOPASSWD: /usr/bin/docker" >> /etc/sudoers

@@ -15,14 +15,8 @@ source ~/.rvm/scripts/rvm
 rvm requirements
 rvm install ruby && rvm use ruby --default
 
-echo "install docker"
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D8576A8BA88D21E9
-echo "deb http://get.docker.io/ubuntu docker main" > /etc/apt/sources.list.d/docker.list
-apt-get update
-dpkg -s lxc-docker 2>/dev/null >/dev/null || apt-get -y install lxc-docker
-
-echo "install flynn stuff"
-docker pull flynn/slugrunner
+echo "install slugrunner stuff"
+docker pull slamplug/slugrunner
 
 echo "create jenkins user for jenkins slave"
 mkdir -p /var/lib/jenkins/.ssh
