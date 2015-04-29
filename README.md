@@ -5,15 +5,39 @@
 ## General
 
 1. Install vagrant on the host.
-2. gt clone --recursive https://github.com/slamplug/vagrant.git
+2. gt clone https://github.com/slamplug/vagrant.git
 
-## Build Server
+## Starting Vagrant VM's
 
-1. cd into vagrant directory
-2. vagrant up build
+vagrant up build
+vagrant up dev
+vagrant up test
+vagrant up elk
 
+### build
+
+jenkins build/Nexus server
 hostname: build
-ip: 192.168.56.10 
+IP: 192.168.56.10
+
+### dev
+
+development test server
+hostname: dev
+IP: 192.168.56.20
+
+### build
+
+system test server
+hostname: test
+IP: 192.168.56.30
+
+### build
+
+logstash/elasticsearch/kibana server
+hostname: build
+IP: 192.168.56.10
+
 
 ### 5 types of build jobs
 
@@ -44,10 +68,3 @@ ip: 192.168.56.10
 -- Remove existing container
 -- Starts new container
 
-## Dev Server
-
-1. cd into vagrant directory
-2. vagrant up dev
-
-hostname: dev
-ip: 192.168.56.20
