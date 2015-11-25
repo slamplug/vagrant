@@ -1,17 +1,17 @@
 #!/bin/sh
 
-echo "install tools first"
-dpkg -s wget 2>/dev/null >/dev/null || apt-get -y install wget
-dpkg -s curl 2>/dev/null >/dev/null || apt-get -y install curl
+#echo "install tools first"
+#dpkg -s wget 2>/dev/null >/dev/null || apt-get -y install wget
+#dpkg -s curl 2>/dev/null >/dev/null || apt-get -y install curl
 
-echo "install and configure elasticsearch"
-wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' | tee /etc/apt/sources.list.d/elasticsearch.list
-apt-get update
-apt-get -y install elasticsearch=1.4.4
-cp /vagrant/elk/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-service elasticsearch restart
-update-rc.d elasticsearch defaults 95 10
+#echo "install and configure elasticsearch"
+#wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
+#echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' | tee /etc/apt/sources.list.d/elasticsearch.list
+#apt-get update
+#apt-get -y install elasticsearch=1.4.4
+#cp /vagrant/elk/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+#service elasticsearch restart
+#update-rc.d elasticsearch defaults 95 10
 
 echo "install and configure kibana"
 cd /tmp && wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz

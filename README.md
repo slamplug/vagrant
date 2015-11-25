@@ -6,6 +6,7 @@
 
 1. Install vagrant on the host.
 2. gt clone https://github.com/slamplug/vagrant.git
+3. Download Oracle JDK jdk-7u79-linux-x64.gz and copy to vagrant/puppet/modules/java/files/jdk-7u79-linux-x64.gz
 
 ## Starting Vagrant VM's
 

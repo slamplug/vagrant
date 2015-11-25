@@ -1,0 +1,13 @@
+---
+classes:
+  - jenkins
+  - maven
+  - nginx
+  - docker
+  
+nginx::conf_file: '/vagrant/puppet/modules/nginx/files/nginx.build.conf'
+nginx::create_index: true
+
+docker::pull_slugbuilder: true
+
+jenkins::jenkins_master: true

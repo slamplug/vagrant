@@ -1,0 +1,12 @@
+---
+classes:
+  - nginx
+  - docker
+  - ruby
+  - jenkins
+  
+nginx::conf_file: '/vagrant/puppet/modules/nginx/files/nginx.dev.conf'
+
+docker::pull_slugbuilder: false
+
+jenkins::jenkins_master: false

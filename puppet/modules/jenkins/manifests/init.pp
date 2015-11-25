@@ -2,48 +2,133 @@
 #
 # Installs and configures jenkins
 
-class jenkins {
+class jenkins (
+
+  $jenkins_master = true
+
+) {
 
   require java
 
-  exec { "add-jenkins-apt-key":
-    command => "/usr/bin/wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | /usr/bin/apt-key add -"
-  }
-  exec { "add-jenkins-to-sources":
-    command => "/bin/sh -c '/bin/echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'",
-    require => Exec[ 'add-jenkins-apt-key' ]
-  }
-  exec { "apt-update":
-    command => "/usr/bin/apt-get update",
-    require => Exec[ 'add-jenkins-to-sources' ]
-  }
+  if ($jenkins_master == true) {
   
-  Exec["apt-update"] -> Package <| |>
+    exec { 'add-jenkins-apt-key':
+      command => "/usr/bin/wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | /usr/bin/apt-key add -"
+    }
+    exec { 'add-jenkins-to-sources':
+      command => "/bin/sh -c '/bin/echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'",
+      require => Exec[ 'add-jenkins-apt-key' ]
+    }
+    exec { 'apt-update-jenkins':
+      command => "/usr/bin/apt-get update",
+      require => Exec[ 'add-jenkins-to-sources' ]
+    }
   
-  $apt_packages = [ 'jenkins', 'unzip' ]
+    Exec["apt-update-jenkins"] -> Package <| |>
   
-  package { $apt_packages:
-    ensure   => 'installed',
-    provider => 'apt',
+    $apt_packages = [ 'jenkins', 'unzip', 'git' ]
+  
+    package { $apt_packages:
+      ensure   => 'installed',
+      provider => 'apt',
+    }
+  
+    exec { 'stop-jenkins':
+      command => '/usr/sbin/service jenkins stop',
+     require => Package[ $apt_packages ]
+    } 
+
+    exec { 'unzip_jenkins_home':
+      command => '/usr/bin/unzip -ofq /vagrant/puppet/modules/jenkins/files/jenkins_home.zip -d /var/lib/jenkins',
+      require => Exec[ 'stop-jenkins' ]
+    }
+  
+    #exec { 'delete_last_successful':
+    #  command => '/usr/bin/find /var/lib/jenkins/jobs -name lastSuccessful -exec rm -rf {} \;',
+    #  require => Exec[ 'unzip_jenkins_home' ]
+    #}
+   
+    #exec { 'delete_last_stable':
+    #  command => '/usr/bin/find /var/lib/jenkins/jobs -name lastStable -exec rm -rf {} \;',
+    #  require => Exec[ 'unzip_jenkins_home' ]
+    #}
+  
+    exec { 'set_jenkins_home_owner':
+      command => '/bin/chown -R jenkins:jenkins /var/lib/jenkins',
+      #require => [Exec[ 'delete_last_successful'], Exec['delete_last_stable' ]]
+      require => Exec[ 'unzip_jenkins_home' ]
+    }
+  
+    exec { 'start-jenkins':
+      command => '/usr/sbin/service jenkins start',
+      require => Exec[ 'set_jenkins_home_owner' ]
+    }
+    
+    exec { 'set-jenkins-git-user-email':
+      user        => 'jenkins',
+      environment => 'HOME=/var/lib/jenkins',
+      command     => '/usr/bin/git config --global user.email "jenkins@example.com"',
+      require     => Package[ $apt_packages ]
+    }
+
+    exec { 'set-jenkins-git-user-name':
+      user        => 'jenkins',
+      environment => 'HOME=/var/lib/jenkins',
+      command     => '/usr/bin/git config --global user.name "jenkins"',
+      require     => Package[ $apt_packages ]
+    }
+
+  } else {
+  
+    group { 'jenkins':
+      ensure => 'present'
+    }->
+    user { 'jenkins':
+      ensure => 'present',
+      groups => 'jenkins',
+      home   => '/var/lib/jenkins'
+    }->
+    file { '/var/lib/jenkins':
+      ensure => 'directory',
+      owner  => 'jenkins',
+      group  => 'jenkins'
+    }->
+    file { '/var/lib/jenkins/.ssh':
+      ensure => 'directory',
+      owner  => 'jenkins',
+      group  => 'jenkins',
+      mode   => '700'
+    }->
+    file { '/var/lib/jenkins/containers':
+      ensure => 'directory',
+      owner  => 'jenkins',
+      group  => 'jenkins'
+    }->
+    file { '/var/lib/jenkins/.ssh/id_rsa':
+      ensure => 'present',
+      owner  => 'jenkins',
+      group  => 'jenkins',
+      mode   => '600',
+      source => '/vagrant/puppet/modules/jenkins/files/id_rsa'
+    }->
+    file { '/var/lib/jenkins/.ssh/id_rsa.pub':
+      ensure => 'present',
+      owner  => 'jenkins',
+      group  => 'jenkins',
+      mode   => '755',
+      source => '/vagrant/puppet/modules/jenkins/files/id_rsa.pub'
+    }->
+    file { '/var/lib/jenkins/.ssh/authorized_keys':
+      ensure => 'present',
+      owner  => 'jenkins',
+      group  => 'jenkins',
+      mode   => '640',
+      source => '/vagrant/puppet/modules/jenkins/files/authorized_keys'
+    }
   }
-  
-  service { 'jenkins':
-    ensure => 'running'
+
+  exec { 'add-jenkins-to-sudoers':
+    command => '/bin/echo "jenkins    ALL=NOPASSWD: /usr/bin/docker" >> /etc/sudoers'
   }
-  
-  exec { "unzip_jenkins_home":
-    command => "/usr/bin/unzip -o /vagrant/puppet/modules/jenkins/files/jenkins_home.zip -d /var/lib/jenkins",
-    require => Package[ $apt_packages ]
-  }->
-  exec { "delete_last_successful":
-    command => "/usr/bin/find /var/lib/jenkins/jobs -name lastSuccessful -exec rm -rf 2>/dev/null {} \\;"  
-  }->
-  exec { "delete_last_stable":
-    command => "/usr/bin/find /var/lib/jenkins/jobs -name lastStable -exec rm -rf 2>/dev/null {} \\;"  
-  }->
-  file { '/var/lib/jenkins':
-    owner   => 'jenkins',
-    group   => 'jenkins',
-    notify  => Service['jenkins'],
-  }
+
 }
