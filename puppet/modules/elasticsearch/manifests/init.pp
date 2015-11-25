@@ -37,17 +37,9 @@ class elasticsearch () {
   file { '/etc/elasticsearch/elasticsearch.yml':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/elasticsearch/files/elasticsearch.yml',
+    owner   => 'elasticsearch',
+    group   => 'elasticsearch',
     notify  => Service['elasticsearch'],
     require => Package[ $apt_packages ]
   }
-
 }
-
-#echo "install and configure elasticsearch"
-#wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-#echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' | tee /etc/apt/sources.list.d/elasticsearch.list
-#apt-get update
-#apt-get -y install elasticsearch=1.4.4
-#cp /vagrant/elk/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-#service elasticsearch restart
-#update-rc.d elasticsearch defaults 95 10

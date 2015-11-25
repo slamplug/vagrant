@@ -29,13 +29,13 @@ htpasswd -b -c /etc/nginx/htpasswd.users kibanaadmin password
 cp /vagrant/elk/nginx/default /etc/nginx/sites-available/default
 service nginx restart
 
-echo "install and configure logstash"
-echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
-apt-get update && apt-get install logstash
-mkdir -p /etc/pki/tls/certs/ && \
-  cp /vagrant/elk/logstash/lumberjack.crt /etc/pki/tls/certs/lumberjack.crt
-mkdir -p /etc/pki/tls/private/ && \
-  cp /vagrant/elk/logstash/lumberjack.key /etc/pki/tls/private/lumberjack.key
-cp /vagrant/elk/logstash/01-lumberjack-input.conf /etc/logstash/conf.d/01-lumberjack-input.conf && \
-  cp /vagrant/elk/logstash/30-lumberjack-output.conf /etc/logstash/conf.d/30-lumberjack-output.conf
-service logstash restart
+#echo "install and configure logstash"
+#echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' | tee /etc/apt/sources.list.d/logstash.list
+#apt-get update && apt-get install logstash
+#mkdir -p /etc/pki/tls/certs/ && \
+#  cp /vagrant/elk/logstash/lumberjack.crt /etc/pki/tls/certs/lumberjack.crt
+#mkdir -p /etc/pki/tls/private/ && \
+#  cp /vagrant/elk/logstash/lumberjack.key /etc/pki/tls/private/lumberjack.key
+#cp /vagrant/elk/logstash/01-lumberjack-input.conf /etc/logstash/conf.d/01-lumberjack-input.conf && \
+#  cp /vagrant/elk/logstash/30-lumberjack-output.conf /etc/logstash/conf.d/30-lumberjack-output.conf
+#service logstash restart

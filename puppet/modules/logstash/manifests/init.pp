@@ -30,17 +30,23 @@ class logstash () {
   }
   
   file { ['/etc/pki', '/etc/pki/tls', '/etc/pki/tls/certs', '/etc/pki/tls/private' ]:
-    ensure => directory
+    ensure => directory,
+    owner   => 'logstash',
+    group   => 'logstash',
   }->
   file { '/etc/pki/tls/certs/lumberjack.crt':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/logstash/files/lumberjack.crt',
+    owner   => 'logstash',
+    group   => 'logstash',
     notify  => Service['logstash'],
     require => Package[ $apt_packages ]
   }->
   file { '/etc/pki/tls/certs/lumberjack.key':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/logstash/files/lumberjack.key',
+    owner   => 'logstash',
+    group   => 'logstash',
     notify  => Service['logstash'],
     require => Package[ $apt_packages ]
   }
@@ -48,12 +54,16 @@ class logstash () {
   file { '/etc/logstash/conf.d/01-lumberjack-input.conf':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/logstash/files/01-lumberjack-input.conf',
+    owner   => 'logstash',
+    group   => 'logstash',
     notify  => Service['logstash'],
     require => Package[ $apt_packages ]
   }
   file { '/etc/logstash/conf.d/30-lumberjack-output.conf':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/logstash/files/30-lumberjack-output.conf',
+    owner   => 'logstash',
+    group   => 'logstash',
     notify  => Service['logstash'],
     require => Package[ $apt_packages ]
   }
