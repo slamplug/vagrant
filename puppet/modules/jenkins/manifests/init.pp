@@ -32,38 +32,32 @@ class jenkins (
       ensure   => 'installed',
       provider => 'apt',
     }
+    
+    service { 'jenkins':
+      ensure  => 'running',
+      enable  => 'true',
+      require => Package[ $apt_packages ]
+    }    
   
-    exec { 'stop-jenkins':
-      command => '/usr/sbin/service jenkins stop',
-     require => Package[ $apt_packages ]
-    } 
-
-    exec { 'unzip_jenkins_home':
-      command => '/usr/bin/unzip -ofq /vagrant/puppet/modules/jenkins/files/jenkins_home.zip -d /var/lib/jenkins',
-      require => Exec[ 'stop-jenkins' ]
-    }
-  
-    #exec { 'delete_last_successful':
-    #  command => '/usr/bin/find /var/lib/jenkins/jobs -name lastSuccessful -exec rm -rf {} \;',
-    #  require => Exec[ 'unzip_jenkins_home' ]
-    #}
-   
-    #exec { 'delete_last_stable':
-    #  command => '/usr/bin/find /var/lib/jenkins/jobs -name lastStable -exec rm -rf {} \;',
-    #  require => Exec[ 'unzip_jenkins_home' ]
-    #}
-  
-    exec { 'set_jenkins_home_owner':
-      command => '/bin/chown -R jenkins:jenkins /var/lib/jenkins',
-      #require => [Exec[ 'delete_last_successful'], Exec['delete_last_stable' ]]
-      require => Exec[ 'unzip_jenkins_home' ]
-    }
-  
-    exec { 'start-jenkins':
-      command => '/usr/sbin/service jenkins start',
-      require => Exec[ 'set_jenkins_home_owner' ]
+    file { '/tmp/jenkins':
+      ensure => 'directory',
     }
     
+    exec { 'unzip_jenkins_home':
+      command => '/usr/bin/unzip -oq /vagrant/puppet/modules/jenkins/files/jenkins_home.zip -d /tmp/jenkins',
+      require => [ Package[ $apt_packages ], File[ '/tmp/jenkins'] ]
+    }
+      
+    file { '/var/lib/jenkins':
+      ensure   => 'present',
+      source   => '/tmp/jenkins',
+      recurse  => 'true',
+      require  => Exec[ 'unzip_jenkins_home' ],
+      notify   => Service[ 'jenkins' ],
+      owner    => 'jenkins',
+      group    => 'jenkins',
+    } 
+      
     exec { 'set-jenkins-git-user-email':
       user        => 'jenkins',
       environment => 'HOME=/var/lib/jenkins',
@@ -128,7 +122,8 @@ class jenkins (
   }
 
   exec { 'add-jenkins-to-sudoers':
-    command => '/bin/echo "jenkins    ALL=NOPASSWD: /usr/bin/docker" >> /etc/sudoers'
+    command => '/bin/echo "jenkins    ALL=NOPASSWD: /usr/bin/docker" >> /etc/sudoers',
+    unless  => '/bin/grep jenkins /etc/sudoers',
   }
 
 }

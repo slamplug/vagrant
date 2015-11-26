@@ -5,7 +5,6 @@
 class nginx (
    $conf_file             = '/vagrant/puppet/modules/nginx/files/nginx.conf',
    $default_site          = '/vagrant/puppet/modules/nginx/files/default',
-   #$delete_default       = 'true',
    $install_apache2_utils = 'false',
    $create_index          = undef
 ) {
@@ -21,20 +20,10 @@ class nginx (
     provider => 'apt',
   }
   service { 'nginx':
-    ensure => 'running'
-  }
-  
-  #if ($delete_default == 'true') {
-  #  file { '/etc/nginx/sites-available/default':
-  #    ensure  => 'absent',
-  #    force   => 'true',
-  #   require => Package[ $apt_packages ]
-  #  }-> 
-  #  file { '/etc/nginx/sites-enabled/default':
-  #    ensure => 'absent',
-  #    force  => 'true'
-  #  }
-  #}
+    ensure  => 'running',
+    enable  => 'true',
+    require => Package[ $apt_packages ]
+  } 
   
   file { '/etc/nginx/nginx.conf':
     ensure  => 'present',
@@ -52,13 +41,14 @@ class nginx (
   
   if ($create_index) {
     file { ['/build', '/build/nexus']:
-      ensure => 'directory'
+      ensure  => 'directory',
+      require => Package[ $apt_packages ],
     }
     
     file { '/build/nexus/index.html':
-      ensure => 'present',
-      source => '/vagrant/puppet/modules/nginx/files/index.html',
-      notify => Service['nginx'],
+      ensure  => 'present',
+      source  => '/vagrant/puppet/modules/nginx/files/index.html',
+      notify  => Service['nginx'],
       require => [ File['/build', '/build/nexus'], Package[ $apt_packages ] ],
     }
   } 
