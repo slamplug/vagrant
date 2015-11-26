@@ -3,11 +3,18 @@
 # Installs and configures nginx
 
 class nginx (
-   $conf_file    = '/vagrant/puppet/modules/nginx/files/nginx.conf',
-   $create_index = undef
+   $conf_file             = '/vagrant/puppet/modules/nginx/files/nginx.conf',
+   $default_site          = '/vagrant/puppet/modules/nginx/files/default',
+   #$delete_default       = 'true',
+   $install_apache2_utils = 'false',
+   $create_index          = undef
 ) {
 
-  $apt_packages = [ 'nginx' ]
+  if ($install_apache2_utils == 'false') {
+    $apt_packages = [ 'nginx' ]
+  } else {
+    $apt_packages = [ 'nginx', 'apache2-utils' ]
+  }
   
   package { $apt_packages:
     ensure   => 'installed',
@@ -17,32 +24,42 @@ class nginx (
     ensure => 'running'
   }
   
-  file { '/etc/nginx/sites-available/default':
-    ensure  => 'absent',
-    force   => 'true',
-    require => Package[ $apt_packages ]
-  }->
-  file { '/etc/nginx/sites-enabled/default':
-    ensure => 'absent',
-    force  => 'true'
-  }->
+  #if ($delete_default == 'true') {
+  #  file { '/etc/nginx/sites-available/default':
+  #    ensure  => 'absent',
+  #    force   => 'true',
+  #   require => Package[ $apt_packages ]
+  #  }-> 
+  #  file { '/etc/nginx/sites-enabled/default':
+  #    ensure => 'absent',
+  #    force  => 'true'
+  #  }
+  #}
+  
   file { '/etc/nginx/nginx.conf':
+    ensure  => 'present',
+    source  => $conf_file,
+    notify  => Service['nginx'],
+    require => Package[ $apt_packages ],
+  }
+  
+  file { '/etc/nginx/sites-available/default':
     ensure => 'present',
-    source => $conf_file,
-    notify => Service['nginx']
+    source => $default_site,
+    notify => Service['nginx'],
+    require => Package[ $apt_packages ],
   }
   
   if ($create_index) {
-    file {'/build':
+    file { ['/build', '/build/nexus']:
       ensure => 'directory'
-    }->
-    file {'/build/nexus':
-      ensure => 'directory'
-    }->
+    }
+    
     file { '/build/nexus/index.html':
       ensure => 'present',
       source => '/vagrant/puppet/modules/nginx/files/index.html',
-      notify => Service['nginx']
+      notify => Service['nginx'],
+      require => [ File['/build', '/build/nexus'], Package[ $apt_packages ] ],
     }
   } 
 }

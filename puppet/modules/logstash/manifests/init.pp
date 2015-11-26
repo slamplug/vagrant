@@ -33,22 +33,25 @@ class logstash () {
     ensure => directory,
     owner   => 'logstash',
     group   => 'logstash',
-  }->
+    require => Package[ $apt_packages ]
+  }
+  
   file { '/etc/pki/tls/certs/lumberjack.crt':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/logstash/files/lumberjack.crt',
     owner   => 'logstash',
     group   => 'logstash',
     notify  => Service['logstash'],
-    require => Package[ $apt_packages ]
-  }->
+    require => File[ '/etc/pki', '/etc/pki/tls', '/etc/pki/tls/certs', '/etc/pki/tls/private' ]
+  }
+  
   file { '/etc/pki/tls/certs/lumberjack.key':
     ensure  => 'present',
     source  => '/vagrant/puppet/modules/logstash/files/lumberjack.key',
     owner   => 'logstash',
     group   => 'logstash',
     notify  => Service['logstash'],
-    require => Package[ $apt_packages ]
+    require => File[ '/etc/pki', '/etc/pki/tls', '/etc/pki/tls/certs', '/etc/pki/tls/private' ]
   }
   
   file { '/etc/logstash/conf.d/01-lumberjack-input.conf':

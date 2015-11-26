@@ -3,3 +3,8 @@ classes:
   - elasticsearch
   - logstash
   - kibana
+  - nginx
+
+nginx::delete_default: 'false'
+nginx::install_apache2_utils: true
+nginx::default_site: '/vagrant/puppet/modules/nginx/files/elk.default'
