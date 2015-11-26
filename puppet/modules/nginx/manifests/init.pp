@@ -36,6 +36,7 @@ class nginx (
     command => "/usr/bin/htpasswd -b -c /etc/nginx/htpasswd.users kibanaadmin password",
     notify  => Service['nginx'],
     require => Package[ $apt_packages ],
+    onlyif  => '/usr/bin/test -f /usr/bin/htpasswd',
   }
   
   file { '/etc/nginx/sites-available/default':
@@ -49,6 +50,7 @@ class nginx (
     file { ['/build', '/build/nexus']:
       ensure  => 'directory',
       require => Package[ $apt_packages ],
+      mode    => '777',
     }
     
     file { '/build/nexus/index.html':

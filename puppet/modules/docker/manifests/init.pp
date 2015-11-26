@@ -28,7 +28,13 @@ class docker (
     ensure   => 'installed',
     provider => 'apt',
   }
-  
+
+  service { 'docker':
+    ensure     => 'running',
+    enable     => 'true',
+    require    => Package[ $apt_packages ],
+  }
+    
   if ($pull_slugbuilder == 'true') {
     exec { 'pull-slugbuilder':
       command => '/usr/bin/docker pull flynn/slugbuilder',
