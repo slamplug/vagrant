@@ -50,7 +50,7 @@ class jenkins (
       
     file { '/var/lib/jenkins':
       ensure   => 'present',
-      source   => '/tmp/jenkins',
+      source   => '/tmp/jenkins/jenkins_home',
       recurse  => 'true',
       require  => Exec[ 'unzip_jenkins_home' ],
       notify   => Service[ 'jenkins' ],

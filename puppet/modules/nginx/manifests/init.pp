@@ -32,6 +32,12 @@ class nginx (
     require => Package[ $apt_packages ],
   }
   
+  exec { 'htpasswd-kibana':
+    command => "/usr/bin/htpasswd -b -c /etc/nginx/htpasswd.users kibanaadmin password",
+    notify  => Service['nginx'],
+    require => Package[ $apt_packages ],
+  }
+  
   file { '/etc/nginx/sites-available/default':
     ensure => 'present',
     source => $default_site,

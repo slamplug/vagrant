@@ -3,8 +3,16 @@
 
 BOX = 'ubuntu/trusty64'
 
+# script to create swapfile if none
 $script = <<SCRIPT
-cp -r /vagrant/.ssh/* /home/vagrant/.ssh/. && chmod 600 /home/vagrant/.ssh/id_rsa
+grep -q "swapfile" /etc/fstab
+if [ $? -ne 0 ]; then
+  fallocate -l 2048M /swapfile
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+fi
 SCRIPT
 
 Vagrant.configure('2') do |config|
@@ -14,6 +22,8 @@ Vagrant.configure('2') do |config|
     build_config.vm.box = BOX
     build_config.vm.host_name = "build"
     build_config.vm.network "private_network", ip: "192.168.56.10"
+    
+    config.vm.provision "shell", inline: $script
 
     build_config.vm.provision "puppet" do |puppet|
       puppet.manifests_path    = "puppet/manifests"
@@ -33,6 +43,8 @@ Vagrant.configure('2') do |config|
     dev_config.vm.host_name = "dev"
     dev_config.vm.network "private_network", ip: "192.168.56.20"
 
+    dev_config.vm.provision "shell", inline: $script
+
     dev_config.vm.provision "puppet" do |puppet|
       puppet.manifests_path    = "puppet/manifests"
       puppet.manifest_file     = "site.pp"
@@ -51,6 +63,8 @@ Vagrant.configure('2') do |config|
     test_config.vm.host_name = "test"
     test_config.vm.network "private_network", ip: "192.168.56.30"
 
+    test_config.vm.provision "shell", inline: $script
+
     test_config.vm.provision "puppet" do |puppet|
       puppet.manifests_path    = "puppet/manifests"
       puppet.manifest_file     = "site.pp"
@@ -68,6 +82,8 @@ Vagrant.configure('2') do |config|
     elk_config.vm.box = BOX
     elk_config.vm.host_name = "elk"
     elk_config.vm.network "private_network", ip: "192.168.56.40"
+
+    elk_config.vm.provision "shell", inline: $script
 
     elk_config.vm.provision "puppet" do |puppet|
       puppet.manifests_path    = "puppet/manifests"
